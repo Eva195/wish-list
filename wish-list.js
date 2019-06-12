@@ -1,30 +1,23 @@
-var addbutton = wishlist.getElementById("formu");
-addbutton.addEventListener("click", addwish);
+let liste = "";
+let souhaitBalise = "";
 
-var zoneliste = wishlist.getElementById("listfull");
-zoneliste.addEventListener("click", formu);
+const ajouterSouhait = () => {
+	let nouveauSouhait = document.getElementById('text').value;
+	souhaitBalise = "<li>" + nouveauSouhait + "</li>";
 
-var maliste = [];
+	liste += souhaitBalise;
+
+	document.getElementById('listfull').innerHTML = liste;
+	document.getElementById('text').value = "";
+};
+
+const supprimerListe = () => {
+	document.getElementById('listfull').innerHTML = "";
+	liste = "";
+};
+
+document.getElementById('envoyer').addEventListener('click', ajouterSouhait);
+document.getElementById('suppr').addEventListener('click', supprimerListe);
 
 
 
-function addwish() {
-
-    var wish = wishlist.getElementById("formu");
-
-    addToTheList(wish);
-    resetInput(wish);
-}
-
-function resetInput(inputToReset) {
-    inputToReset.value = "";
-}
-
-function addToTheList(thingToAdd) {
-    maliste.push(thingToAdd.value);
-    var newListItem = wishlist.createElement("li");
-    newListItem.innerHTML = maliste[maliste.length - 1];
-
-    zoneliste.appendChild(newListItem);
-
-}
